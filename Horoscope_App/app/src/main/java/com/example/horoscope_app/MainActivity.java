@@ -1,6 +1,5 @@
 package com.example.horoscope_app;
 
-import android.provider.Settings;
 import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,12 +12,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class MainActivity extends AppCompatActivity {
     private Document doc; // где хранится юрл страница
     private Thread secThread; //создание второстепенного потока
     private Runnable runnable; // где будет запускаться код
-    private List<Horoscope> mList = new ArrayList<>(); // список данных с горскопами.
 
+    private List<Horoscope> mList = new ArrayList<>(); // список данных с горскопами.
+    private List<HoroscopeYesterday> mListYesterday = new ArrayList<>();
 
     String  Host = "https://horo.mail.ru";
 
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 getWeb();
             }
         };
-        secThread = new Thread(runnable);               // создание второстепенного потока
+        secThread = new Thread(runnable);                // создание второстепенного потока
         secThread.start();                  // запуск второстепренного потока
     }
     private void getWeb()           // функция получения юрл-страницы
@@ -53,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
                // Log.d("MyLog", "Title : " + div.select("a").attr("href")); // фильтр для проверки полученной ссылки.
                String url = Host + e.attr("href");
                parseLinks(url);
+
+
             }
 
         } catch (IOException e) {
@@ -65,7 +68,9 @@ public class MainActivity extends AppCompatActivity {
             try {
                 String title;
                 String description; //переменная хранит гороскоп на сегодня
-                Document doc = Jsoup.connect(url).get();
+                Document doc = Jsoup.connect(url).userAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.21 (KHTML, like Gecko) Chrome/19.0.1042.0 Safari/535.21").timeout(10 * 1000).get();
+
+                Thread.sleep(100);
 
                 Elements divs = doc.getElementsByClass("p-score-day__item__value__inner"); // выбираем по классу обьекты для цифр
 
@@ -75,9 +80,12 @@ public class MainActivity extends AppCompatActivity {
 
                 Elements hrefTomorrow = doc.select("div[class=filter filter_light] > div[class=filter__list] > a[name=clb11717607]"); // выбираем теги с ссылками на гороскоп на завтра
 
+
+
                 for (Element e: hrefTomorrow) // запол
                 {
                     String urlTomorrow = Host + e.attr("href");
+
                     parseLinksTomorrow(urlTomorrow);
                 }
 
@@ -86,11 +94,14 @@ public class MainActivity extends AppCompatActivity {
                 for (Element el: els)
                 {
                     description = el.select("div[class=article__text] > div[class=article__item article__item_alignment_left article__item_html]").text();
-
+                    //
+                    mList.add(new Horoscope(description, bus, love, numeral));
+                    Log.d("MyLog", String.valueOf(mList));
+                    //System.out.println("бизнес: " + bus + "любовь: " + love + "цифра: " + numeral + "описание: " + description);
 
                     //mList.add(new Horoscope(description));
                 }
-            } catch (IOException e) {
+            } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
         }
@@ -99,7 +110,9 @@ public class MainActivity extends AppCompatActivity {
         {
             try {
                 String description;
-                Document doc = Jsoup.connect(url).get();
+                Document doc = Jsoup.connect(url).userAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.21 (KHTML, like Gecko) Chrome/19.0.1042.0 Safari/535.21").timeout(10 * 1000).get();
+
+                Thread.sleep(100);
 
                 Elements divs = doc.getElementsByClass("p-score-day__item__value__inner"); // выбираем по классу обьекты для цифр
 
@@ -111,10 +124,12 @@ public class MainActivity extends AppCompatActivity {
                 for (Element el: els)
                 {
                     description = el.select("div[class=article__text] > div[class=article__item article__item_alignment_left article__item_html]").text();
-                    System.out.println(description);
+                    // Log.d("MyLogYes", bus + " " + love + " " + numeral + " " + description);
+                    mListYesterday.add(new HoroscopeYesterday(description, bus, love, numeral));
+                    //System.out.println("бизнес2: " + bus + "люблвь2: " + love + "цифра2: " + numeral + "описание2: " + description);
                 }
 
-            } catch (IOException e) {
+            } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
         }

@@ -1,6 +1,33 @@
 <resources>
     <string name="app_name">Horoscope_App</string>
-    <string name="name">Ежедневный гороскоп</string>
     <string name="daily_horoscope">Daily Horoscope</string>
+    <string name="aries_view">aries_view</string>
+    <string name="aries">aries</string>
+    <string name="aries_text">Овен</string>
+    <string name="date_aries">21 мар.- 19 апр.</string>
+    <string name="taurus_text">Телец</string>
+    <string name="date_taurus">20 апр. - 20 мая</string>
+    <string name="gemini_text">Близнецы</string>
+    <string name="date_gemini">21 мая - 20 июня</string>
+    <string name="cancer_text">Рак</string>
+    <string name="date_cancer">21 июня - 22 июля</string>
+    <string name="leo_text">Лев</string>
+    <string name="date_leo">23 июля - 22 августа</string>
+    <string name="virgo_text">Дева</string>
+    <string name="date_virgo">23 августа - 22 сент.</string>
+    <string name="libra_text">Весы</string>
+    <string name="date_libra">24 сент. - 23 октября</string>
+    <string name="scorpio_text">Скорпион</string>
+    <string name="date_scorpio">24 окт. - 22 ноября</string>
+    <string name="sagittarius_text">Стрелец</string>
+    <string name="date_sagittarius">23 ноября - 22 дек.</string>
+    <string name="capricorn_text">Козерог</string>
+    <string name="date_capricorn">23 дек. - 20 января</string>
+    <string name="aquarius_text">Водолей</string>
+    <string name="date_aquarius">21 января - 19 февр.</string>
+    <string name="pisces_text">Рыбы</string>
+    <string name="date_pisces">20 февр. - 20 марта.</string>
+    <string name="name_app">name_app</string>
+    <string name="img_aries">imgAries</string>
 
 </resources>
