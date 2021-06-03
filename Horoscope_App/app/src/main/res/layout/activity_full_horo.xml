@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   android:background="@drawable/gradient" app:layout_gravity="center">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="407dp"
+            android:layout_height="207dp" tools:layout_editor_absoluteY="206dp" tools:layout_editor_absoluteX="1dp"
+            android:id="@+id/LNr" tools:ignore="MissingConstraints" android:gravity="center">
+        <TextView
+                android:layout_width="348dp"
+                android:layout_height="wrap_content" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" android:id="@+id/TexToday" android:layout_gravity="center"
+                android:background="@color/colorGray" android:textColor="@color/simpleWhite"
+                android:text="@string/Today" android:textSize="24sp"/>
+        <TextView
+                android:text="TextView"
+                android:layout_width="348dp"
+                android:layout_height="wrap_content" android:id="@+id/textView2" android:layout_gravity="center"
+                android:background="@color/colorGray" android:textColor="@color/simpleWhite" android:textSize="18sp"/>
+        <FrameLayout
+                android:layout_width="348dp"
+                android:layout_height="97dp" android:layout_gravity="center"
+                android:background="@color/colorGray">
+
+            <TextView
+                    android:text="@string/Bus"
+                    android:layout_width="97dp"
+                    android:layout_height="31dp" android:id="@+id/textView5" android:layout_gravity="center|top"
+                    android:textColor="@color/simpleWhite" android:textSize="18sp" android:gravity="center"/>
+            <TextView
+                    android:text="@string/Love"
+                    android:layout_width="97dp"
+                    android:layout_height="31dp" android:id="@+id/textView4" android:layout_gravity="right|top"
+                    android:textColor="@color/simpleWhite" android:textSize="18sp" android:gravity="center"/>
+            <TextView
+                    android:layout_width="97dp"
+                    android:layout_height="75dp"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/editTextNumber3" android:textColorHint="@color/simpleWhite"
+                    android:textSize="30sp" android:layout_gravity="bottom|right"
+                    android:textColor="@color/simpleWhite" android:gravity="center" android:scrollHorizontally="false"
+                    android:scrollbars="vertical"/>
+            <TextView
+                    android:layout_width="97dp"
+                    android:layout_height="75dp"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/editTextNumber2" android:textColorHint="@color/simpleWhite"
+                    android:textSize="30sp" android:layout_gravity="bottom|center"
+                    android:textColor="@color/simpleWhite" android:gravity="center"/>
+            <TextView
+                    android:layout_width="97dp"
+                    android:layout_height="75dp"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/editTextNumber" android:textColorHint="@color/simpleWhite"
+                    android:textSize="30sp" android:layout_gravity="bottom|left"
+                    android:textColor="@color/simpleWhite" android:gravity="center"/>
+            <TextView
+                    android:text="@string/Numeral"
+                    android:layout_width="97dp"
+                    android:layout_height="31dp" android:id="@+id/textView3" android:layout_gravity="top|left"
+                    android:textColor="@color/simpleWhite" android:textSize="18sp" android:gravity="center"/>
+        </FrameLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,7 +18,8 @@ public class Horoscope implements Parcelable {
         this.mNumeral = mNumeral;
     }
 
-    protected Horoscope(Parcel in) {
+    protected Horoscope(Parcel in) // конструктор позволяющий извлечь переменные
+    {
         String [] data = new String[4];
         in.readStringArray(data);
         mDescription = data[0];
@@ -82,6 +83,7 @@ public class Horoscope implements Parcelable {
         dest.writeStringArray(new String[] {mDescription, mBusines, mLove, mNumeral});
 
     }
+
 
 
 }

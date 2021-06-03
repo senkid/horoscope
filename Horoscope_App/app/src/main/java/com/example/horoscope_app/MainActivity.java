@@ -1,5 +1,9 @@
 package com.example.horoscope_app;
 
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,10 +31,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        init();
+        new ParseAllHoro().execute();
+        //init();
 
     }
-    private void init()
+   /* private void init()
     {
         runnable = new Runnable() {
             @Override
@@ -43,7 +48,12 @@ public class MainActivity extends AppCompatActivity {
     }
     private void getWeb()           // функция получения юрл-страницы
     {
+*/
 
+    class ParseAllHoro extends AsyncTask<Void, Void, Void>
+    {
+        @Override
+        protected Void doInBackground(Void... voids) {
 
         try {
             doc = Jsoup.connect("https://horo.mail.ru/").get();
@@ -54,14 +64,27 @@ public class MainActivity extends AppCompatActivity {
                // Log.d("MyLog", "Title : " + div.select("a").attr("href")); // фильтр для проверки полученной ссылки.
                String url = Host + e.attr("href");
                parseLinks(url);
-
-
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+            return null;
         }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+
+            Intent intent = new Intent(MainActivity.this, ListHoroActivity.class);
+            intent.putParcelableArrayListExtra("horo", (ArrayList<? extends Parcelable>) mList);
+
+            startActivity(intent);
+
+            finish();
+        }
+    }
 
         private void parseLinks(String url)
         {
@@ -96,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                     description = el.select("div[class=article__text] > div[class=article__item article__item_alignment_left article__item_html]").text();
                     //
                     mList.add(new Horoscope(description, bus, love, numeral));
-                    Log.d("MyLog", String.valueOf(mList));
+                    //Log.d("MyLog", String.valueOf(mList));
                     //System.out.println("бизнес: " + bus + "любовь: " + love + "цифра: " + numeral + "описание: " + description);
 
                     //mList.add(new Horoscope(description));

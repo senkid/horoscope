@@ -29,5 +29,9 @@
     <string name="date_pisces">20 февр. - 20 марта.</string>
     <string name="name_app">name_app</string>
     <string name="img_aries">imgAries</string>
+    <string name="Numeral">Цифра дня</string>
+    <string name="Bus">Бизнес</string>
+    <string name="Love">Любовь</string>
+    <string name="Today">Сегодня</string>
 
 </resources>
