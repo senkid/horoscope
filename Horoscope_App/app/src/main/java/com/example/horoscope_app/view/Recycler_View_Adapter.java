@@ -1,10 +1,12 @@
-package com.example.horoscope_app;
+package com.example.horoscope_app.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.horoscope_app.model.Horoscope;
+import com.example.horoscope_app.R;
 
 import java.util.Collections;
 import java.util.List;
@@ -13,10 +15,12 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<View_Holder> {
 
 
     List<Data> list = Collections.emptyList();
+    List<Horoscope> mList;
     Context context;
 
-    public Recycler_View_Adapter(List<Data> list, Context context) {
+    public Recycler_View_Adapter(List<Data> list, List<Horoscope> mList,Context context) {
         this.list = list;
+        this.mList = mList;
         this.context = context;
     }
     @Override
@@ -37,6 +41,8 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<View_Holder> {
         holder.title.setText(list.get(position).name);
         holder.description.setText(list.get(position).date);
         holder.imageView.setImageResource(list.get(position).imageId);
+        holder.linkHoro.setText(mList.get(position).getmLinkHoroscope());
+        holder.linkHoroTommorow.setText(mList.get(position).getmLinkHoroscopeTomorrow());
     }
     @Override
     public int getItemCount() {
